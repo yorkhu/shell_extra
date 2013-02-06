@@ -1,0 +1,89 @@
+## Frequently used unix commands
+alias ll='ls -alhG'
+alias l='ll'
+alias lt='ls -alhGrt'
+alias grep='grep --color'
+alias grp="grep -rn"
+alias s='sudo -s'
+alias ..='cd ..'
+
+## Git
+alias gst="git st"
+alias gd="git d"
+alias ga="git add"
+alias gci="git commit"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gl="git l"
+alias glg="git lg"
+
+## Drush
+alias dcc="drush cc all"
+alias dfu="drush fu -y"
+alias dfr="drush fr -y"
+alias ddl='drush dl'
+alias den='drush en -y'
+
+## Other
+
+# Generates a random string and copies it to the clipboard.
+alias srand="cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 16 | pbcopy"
+
+
+
+
+
+
+#_dir_chomp () {
+#    local sd='~/projects/inovae'
+#    local p=${1/#$HOME/\~} b s
+#
+#    if [ $sd != ${p:0:${#sd}} ]; then
+#	echo $p;
+#	return;
+#    fi
+#
+#    s=${#p}
+#    while [[ $p != ${p//\/} ]]&&(($s>$2))
+#    do
+#        p=${p#/}
+#        [[ $p =~ \.?. ]]
+#        b=$b/${BASH_REMATCH[0]}
+#        p=${p#*/}
+#        ((s=${#b}+${#p}))
+#        s=${#p}
+#    done
+#    echo ${b/\/~/\~}${b+/}$p
+#}
+
+
+#_dir_chomp () {
+#    local p=${1/#$HOME/\~} b s
+#    s=${#p}
+#    while [[ $p != ${p//\/} ]]&&(($s>$2))
+#    do
+#        p=${p#/}
+#        [[ $p =~ \.?. ]]
+#        b=$b/${BASH_REMATCH[0]}
+#        p=${p#*/}
+#        ((s=${#b}+${#p}))
+#    done
+#    echo ${b/\/~/\~}${b+/}$p
+#}
+
+#_dir_chomp () {
+#    local IFS=/ c=1 n d
+#    local p=(${1/#$HOME/\~}) r=${p[*]}
+#    local s=${#r}
+#    while ((s>$2&&c<${#p[*]}-1))
+#    do
+#        d=${p[c]}
+#        n=1;[[ $d = .* ]]&&n=2
+#        ((s-=${#d}-n))
+#        p[c++]=${d:0:n}
+#    done
+#    echo "${p[*]}"
+#}
+
+
+
