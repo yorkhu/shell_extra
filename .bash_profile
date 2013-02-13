@@ -47,6 +47,11 @@ else
   GIT_PIECE=''
 fi
 
+#brew
+if [ -f `brew --prefix`/Library/Contributions/brew_bash_completion.sh ]; then
+  source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+fi
+
 _dir_chomp () {
   # source:
   # http://stackoverflow.com/questions/3497885/code-challenge-bash-prompt-path-shortener
