@@ -28,6 +28,10 @@ export color_light_gray='\e[0;37m'
 source $HOME/.shell_extra/.aliases
 source $HOME/.shell_extra/.aliases_project
 
+if [ -f /usr/local/etc/bash_completion ]; then
+   . /usr/local/etc/bash_completion
+fi
+
 ## Configure the bash prompt.
 
 # Date piece. It's not used at the moment, but let's keep it here anyway. It could be useful.
@@ -37,19 +41,11 @@ DATE_PIECE="\[${color_gray}\]\$(date '+%H:%M:%S')\[${color_none}\]"
 PATH_PIECE="\w"
 
 # Git piece.
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-  . /usr/local/etc/bash_completion.d/git-completion.bash
-  . /usr/local/etc/bash_completion.d/git-prompt.sh
-
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
   GIT_PS1_SHOWDIRTYSTATE=true
   GIT_PIECE='$(__git_ps1)'
 else
   GIT_PIECE=''
-fi
-
-#brew
-if [ -f `brew --prefix`/Library/Contributions/brew_bash_completion.sh ]; then
-  source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 fi
 
 _dir_chomp () {
@@ -97,9 +93,6 @@ if [ $USER != "root" ]; then
   echo -ne "Uptime: "; uptime
 fi
 
-if [ -f /opt/local/etc/bash_completion ]; then
-   . /opt/local/etc/bash_completion
-fi
 
 if [ $USER != "root" ]; then
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
