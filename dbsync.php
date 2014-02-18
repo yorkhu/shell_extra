@@ -1,7 +1,8 @@
 #!/usr/bin/php
 <?php
 $projects_dir = 'projects';
-
+$uid1_name = 'admin';
+$uid1_mail = 'york@york.l';
 
 function detect_localarea() {
   global $projects_dir;
@@ -157,7 +158,7 @@ if (is_file($settings_php)) {
         echo " done.\n";
 
         echo 'PASSWORD RESET ';
-        mysql_query("UPDATE users SET `name`='admin', mail='york@york.l' WHERE uid=1");
+        mysql_query("UPDATE users SET `name`='" . $uid1_name . "', mail='" . $uid1_mail . "', init='" . $uid1_mail . "' WHERE uid=1");
         system('drush upwd admin --password=admin');
         echo " done.\n";
       }
