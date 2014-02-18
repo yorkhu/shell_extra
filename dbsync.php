@@ -53,7 +53,6 @@ list($project_name, $settings_php) = detect_localarea();
 
 if (is_file($settings_php)) {
   include_once($settings_php);
-
   $db_dir = $_ENV['HOME'] . "/" . $projects_dir . "/db/" . $project_name;
   if (is_dir($db_dir)) {
     if ($dh = opendir($db_dir)) {
@@ -70,6 +69,7 @@ if (is_file($settings_php)) {
           if (empty($db_file) || ($db_file['ctime'] < $file_stat['ctime'])) {
             $db_file['name'] = $file;
             $db_file['ctime'] = $file_stat['ctime'];
+            $db_file['size'] = $file_stat['size'];
           }
 //          echo $file . "\n" . $file_stat['atime'] . "\n" . $file_stat['ctime'] . "\n" . $file_stat['mtime'] . "\n";
         }
@@ -148,6 +148,11 @@ if (is_file($settings_php)) {
           . ' ' . $drupal_db['database'];
 
         echo 'IMPORT DB ' . $db_file['name'];
+        echo ' ' . $db_file['size'];
+
+#        $filesizename = array(" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB");
+#        echo $size ? round($db_file['size']/pow(1024, ($i = floor(log($db_file['size'], 1024)))), 2) . $filesizename[$i] : '0 Bytes';
+
         exec($cmd);
         echo " done.\n";
 
